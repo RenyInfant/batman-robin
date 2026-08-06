@@ -1,0 +1,31 @@
+/* Gotham Batman & Robin Dark Aesthetic System */
+:root {
+  --bg-dark: #0B0F19;
+  --bg-card: #151C2C;
+  --bg-card-hover: #1E283D;
+  --bg-glass: rgba(21, 28, 44, 0.75);
+  
+  --batman-gold: #FFB800;
+  --batman-gold-glow: rgba(255, 184, 0, 0.35);
+  --robin-red: #E63946;
+  --robin-red-glow: rgba(230, 57, 70, 0.35);
+  --cyan-neon: #00E5FF;
+  --cyan-glow: rgba(0, 229, 255, 0.35);
+  --green-neon: #00E676;
+
+  --text-main: #F1F5F9;
+  --text-muted: #94A3B8;
+  --text-dark: #64748B;
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(255, 184, 0, 0.4);
+  
+  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  
+  --shadow-main: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  --shadow-glow-gold: 0 0 20px rgba(255, 184, 0, 0.25);
+  --shadow-glow-cyan: 0 0 20px rgba(0, 229, 255, 0.25);
+}
