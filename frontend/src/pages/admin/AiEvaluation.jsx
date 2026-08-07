@@ -109,7 +109,8 @@ const AiEvaluation = () => {
 
   const downloadExport = (type) => {
     const token = localStorage.getItem('gotham_auth_token');
-    const url = `http://localhost:5000/api/export/${type}?round=${aiData?.roundNumber || 1}&token=${token}`;
+    const API_BASE_URL = import.meta.env.VITE_API_URL;
+    const url = `${API_BASE_URL}/api/export/${type}?round=${aiData?.roundNumber || 1}&token=${token}`;
     window.open(url, '_blank');
   };
 
@@ -221,7 +222,7 @@ const AiEvaluation = () => {
               <button 
                 type="button" 
                 onClick={() => setHybridEnabled(!hybridEnabled)} 
-                style={{ background: 'none', border: 'none', color: hybridEnabled ? 'var(--green-neon)' : 'var(--text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1rem', fontWeight: 700 }}
+                style={{ background: 'none', border: 'none', color: hybridEnabled ? 'var(--green-neon)' : 'var(--text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
               >
                 {hybridEnabled ? <ToggleRight size={28} /> : <ToggleLeft size={28} />}
                 Hybrid Scoring: {hybridEnabled ? 'ENABLED (ON)' : 'DISABLED (OFF)'}
