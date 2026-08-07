@@ -3,7 +3,7 @@ const { Server } = require('socket.io');
 const app = require('./app');
 const { initSocket } = require('./services/socketService');
 const { startTimerLoop } = require('./services/timerService');
-const seedDefaultUsers = require('./config/seedUsers');
+
 const PORT = process.env.PORT || 5000;
 
 const server = http.createServer(app);
@@ -38,7 +38,7 @@ initSocket(io);
 
 // Start Dynamic Competition Timer Loop
 startTimerLoop();
-seedDefaultUsers();
+
 server.listen(PORT, () => {
   console.log(`=======================================================`);
   console.log(` Gotham Server Online: Batman & Robin Competition Portal`);
