@@ -18,47 +18,76 @@ const { apiLimiter } = require('./middleware/rateLimiter');
 
 const app = express();
 
-// Security Headers
-app.use(helmet({
-  crossOriginResourcePolicy: { policy: "cross-origin" }
-}));
+/* ===========================================================
+   Security Headers
+=========================================================== */
+
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" }
+  })
+);
+
+/* ===========================================================
+   CORS Configuration
+=========================================================== */
 
 const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:5173',
-  'https://batman-robin.vercel.app'
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://batman-robin.vercel.app"
 ];
 
 const isAllowedOrigin = (origin) => {
-  if (!origin) return true; // allow non-browser clients/postman/health checks
+  if (!origin) return true;
+
   return (
     allowedOrigins.includes(origin) ||
     /^https:\/\/batman-robin-.*\.vercel\.app$/.test(origin)
   );
 };
 
-// CORS Configuration
-app.use(cors({
-  origin: (origin, callback) => {
-    if (isAllowedOrigin(origin)) return callback(null, true);
-    return callback(new Error('Not allowed by CORS'));
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (isAllowedOrigin(origin)) {
+        return callback(null, true);
+      }
 
-// Body Parsing
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
+);
+
+/* ===========================================================
+   Body Parsers
+=========================================================== */
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Global Rate Limiting
+/* ===========================================================
+   Global Rate Limiter
+=========================================================== */
+
 app.use('/api', apiLimiter);
 
-// Serve Uploaded Files Stored Locally
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+/* ===========================================================
+   Static Uploads
+=========================================================== */
 
-// Register API Routes
+app.use(
+  '/uploads',
+  express.static(path.join(__dirname, '../uploads'))
+);
+
+/* ===========================================================
+   API Routes
+=========================================================== */
+
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/competition', competitionRoutes);
@@ -67,20 +96,29 @@ app.use('/api/judge', judgeRoutes);
 app.use('/api/export', exportRoutes);
 app.use('/api/backup', backupRoutes);
 
-// Swagger Documentation
+/* ===========================================================
+   Swagger
+=========================================================== */
+
 setupSwagger(app);
 
-// Root Status Check
+/* ===========================================================
+   Health Check
+=========================================================== */
+
 app.get('/', (req, res) => {
   res.json({
     status: 'ONLINE',
     system: 'Batman & Robin AI Prompt Competition Portal API Server',
     version: '1.0.0',
-    documentation: 'http://localhost:5000/api-docs'
+    documentation: `${req.protocol}://${req.get('host')}/api-docs`
   });
 });
 
-// Error Handling Middleware
+/* ===========================================================
+   Error Handler
+=========================================================== */
+
 app.use(errorHandler);
 
 module.exports = app;
