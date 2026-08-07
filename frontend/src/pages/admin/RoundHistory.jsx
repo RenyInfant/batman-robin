@@ -45,7 +45,7 @@ const RoundHistory = () => {
             {r.ref_filepath ? (
               <div style={{ textAlign: 'center', marginBottom: '16px' }}>
                 <img 
-                  src={`http://localhost:5000${r.ref_filepath}`} 
+                  src={`${import.meta.env.VITE_API_URL}${r.ref_filepath}`} 
                   alt="Reference Image" 
                   style={{ width: '100%', maxHeight: '160px', objectFit: 'contain', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }} 
                 />
