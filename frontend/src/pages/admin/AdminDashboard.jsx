@@ -170,7 +170,7 @@ const AdminDashboard = () => {
             <div style={{ textAlign: 'center', marginBottom: '16px' }}>
               <div style={{ position: 'relative', display: 'inline-block' }}>
                 <img 
-                  src={`http://localhost:5000${state.referenceImage.filepath}`} 
+                  src={`${import.meta.env.VITE_API_URL}${state.referenceImage.filepath}`} 
                   alt="Current Reference" 
                   style={{ width: '100%', maxHeight: '200px', objectFit: 'contain', borderRadius: 'var(--radius-sm)', border: '1px solid var(--cyan-glow)' }}
                 />
