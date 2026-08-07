@@ -299,7 +299,7 @@ const JudgeDashboard = () => {
                   }}
                 >
                   <img 
-                    src={`http://localhost:5000${referenceImage.filepath}`} 
+                    src={`${import.meta.env.VITE_API_URL}${referenceImage.filepath}`} 
                     alt="Reference Image" 
                     style={{ width: '100%', height: '260px', objectFit: 'contain' }} 
                   />
@@ -333,7 +333,7 @@ const JudgeDashboard = () => {
                   }}
                 >
                   <img 
-                    src={`http://localhost:5000${currentSub.filepath}`} 
+                    src={`${import.meta.env.VITE_API_URL}${currentSub.filepath}`} 
                     alt="Team Submission" 
                     style={{ width: '100%', height: '260px', objectFit: 'contain' }} 
                   />
