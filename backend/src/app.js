@@ -23,13 +23,26 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  'https://batman-robin.vercel.app'
+];
+
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true; // allow non-browser clients/postman/health checks
+  return (
+    allowedOrigins.includes(origin) ||
+    /^https:\/\/batman-robin-.*\.vercel\.app$/.test(origin)
+  );
+};
+
 // CORS Configuration
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "https://batman-robin.vercel.app"
-  ], 
+  origin: (origin, callback) => {
+    if (isAllowedOrigin(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
