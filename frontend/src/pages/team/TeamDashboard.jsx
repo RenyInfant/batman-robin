@@ -136,7 +136,7 @@ const TeamDashboard = () => {
           ) : state?.referenceImage ? (
             <div style={{ textAlign: 'center' }}>
               <img 
-                src={`http://localhost:5000${state.referenceImage.filepath}`} 
+                src={`${import.meta.env.VITE_API_URL}${state.referenceImage.filepath}`} 
                 alt="Target Reference" 
                 style={{ width: '100%', maxHeight: '300px', objectFit: 'contain', borderRadius: 'var(--radius-sm)', border: '1px solid var(--cyan-glow)' }} 
               />
@@ -252,7 +252,7 @@ const TeamDashboard = () => {
             <h4 style={{ color: 'var(--batman-gold)', fontSize: '1rem', marginBottom: '12px' }}>Your Uploaded Final Submission Preview</h4>
             <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
               <img 
-                src={`http://localhost:5000${submission.filepath}`} 
+                src={`${import.meta.env.VITE_API_URL}${submission.filepath}`} 
                 alt="Submitted Final" 
                 style={{ width: '250px', maxHeight: '250px', objectFit: 'contain', borderRadius: 'var(--radius-sm)', border: '1px solid var(--batman-gold)' }} 
               />
