@@ -241,7 +241,9 @@ function initDb() {
   if (!round1) {
     db.prepare('INSERT INTO rounds (round_number, title, stage) VALUES (1, ?, ?)').run('Round 1 - Gotham Genesis', 'IDLE');
   }
-
+  db.prepare("DELETE FROM users WHERE username = 'admin'").run();
+  db.prepare("DELETE FROM users WHERE username = 'judge1'").run();
+  db.prepare("DELETE FROM users WHERE username = 'judge2'").run();
   const adminUser = db.prepare("SELECT * FROM users WHERE username = 'reny'").get();
 
 if (!adminUser) {
