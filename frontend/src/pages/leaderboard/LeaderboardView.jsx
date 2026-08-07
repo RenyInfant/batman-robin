@@ -68,7 +68,7 @@ const LeaderboardView = () => {
 
   const downloadExport = (type) => {
     const token = localStorage.getItem('gotham_auth_token');
-    const url = `http://localhost:5000/api/export/${type}?round=${roundNumber}&token=${token}`;
+    const url =`${import.meta.env.VITE_API_URL}/api/export/${type}?round=${roundNumber}&token=${token}`;
     window.open(url, '_blank');
   };
 
