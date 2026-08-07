@@ -25,9 +25,14 @@ app.use(helmet({
 
 // CORS Configuration
 app.use(cors({
-  origin: '*',
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://batman-robin.vercel.app"
+  ], 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 
 // Body Parsing
