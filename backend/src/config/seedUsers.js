@@ -5,7 +5,7 @@ async function seedDefaultUsers() {
   try {
     // ---------- ADMIN ----------
     const admin = await db.get(
-      "SELECT id FROM users WHERE role = 'reny' LIMIT 1"
+      "SELECT id FROM users WHERE role = 'admin' LIMIT 1"
     );
 
     if (!admin) {
@@ -25,7 +25,7 @@ async function seedDefaultUsers() {
 
     // ---------- JUDGE ----------
     const judge = await db.get(
-      "SELECT id FROM users WHERE role = 'agentvatsava' LIMIT 1"
+      "SELECT id FROM users WHERE role = 'judge' LIMIT 1"
     );
 
     if (!judge) {
