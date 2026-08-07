@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (role, username, password) => {
     setLoading(true);
     try {
-      const endpoint = `/api/auth/login/${role}`;
+      const endpoint = `/auth/login/${role}`;
       const res = await api.post(endpoint, { username, password });
       const { token: jwtToken, user: userData } = res.data;
 
