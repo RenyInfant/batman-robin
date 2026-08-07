@@ -242,18 +242,33 @@ function initDb() {
     db.prepare('INSERT INTO rounds (round_number, title, stage) VALUES (1, ?, ?)').run('Round 1 - Gotham Genesis', 'IDLE');
   }
 
-  // Seed default Users: Admin, Judge 1, Judge 2, Team 1, Team 2
-  const adminUser = db.prepare("SELECT * FROM users WHERE username = 'admin'").get();
-  if (!adminUser) {
-    const adminPass = bcrypt.hashSync('admin123', 10);
-    db.prepare("INSERT INTO users (username, password_hash, role) VALUES ('admin', ?, 'admin')").run(adminPass);
-  }
+  const adminUser = db.prepare("SELECT * FROM users WHERE username = 'reny'").get();
 
-  const judgeUser = db.prepare("SELECT * FROM users WHERE username = 'judge1'").get();
-  if (!judgeUser) {
-    const judgePass = bcrypt.hashSync('judge123', 10);
-    db.prepare("INSERT INTO users (username, password_hash, role) VALUES ('judge1', ?, 'judge')").run(judgePass);
-  }
+if (!adminUser) {
+    const adminPass = bcrypt.hashSync('batman2026', 10);
+
+    db.prepare(
+        "INSERT INTO users (username,password_hash,role) VALUES (?, ?, ?)"
+    ).run(
+        "reny",
+        adminPass,
+        "admin"
+    );
+}
+
+  const judgeUser = db.prepare("SELECT * FROM users WHERE username = 'agentvatsava'").get();
+
+if (!judgeUser) {
+    const judgePass = bcrypt.hashSync('batman2026',10);
+
+    db.prepare(
+        "INSERT INTO users (username,password_hash,role) VALUES (?, ?, ?)"
+    ).run(
+        "agentvatsava",
+        judgePass,
+        "judge"
+    );
+}
 
   const judgeUser2 = db.prepare("SELECT * FROM users WHERE username = 'judge2'").get();
   if (!judgeUser2) {
