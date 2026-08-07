@@ -40,7 +40,7 @@ const ImagePreviewModal = ({ isOpen, onClose, title, referenceUrl, submissionUrl
                 <ImageIcon size={16} /> Reference Target Image
               </h4>
               <img 
-                src={`http://localhost:5000${referenceUrl}`} 
+                src={`${import.meta.env.VITE_API_URL}${referenceUrl}`} 
                 alt="Reference Target" 
                 style={{ width: '100%', maxHeight: '450px', objectFit: 'contain', borderRadius: 'var(--radius-sm)', border: '1px solid var(--cyan-glow)' }} 
               />
@@ -53,7 +53,7 @@ const ImagePreviewModal = ({ isOpen, onClose, title, referenceUrl, submissionUrl
                 <ImageIcon size={16} /> Team Submitted Final Image
               </h4>
               <img 
-                src={`http://localhost:5000${submissionUrl}`} 
+                src={`${import.meta.env.VITE_API_URL}${submissionUrl}`} 
                 alt="Team Submission" 
                 style={{ width: '100%', maxHeight: '450px', objectFit: 'contain', borderRadius: 'var(--radius-sm)', border: '1px solid var(--batman-gold-glow)' }} 
               />
